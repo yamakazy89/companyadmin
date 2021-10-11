@@ -5,7 +5,7 @@
 			<div class="sidebar-brand-icon rotate-n-15">
 				<img src="">
 			</div>
-			<div class="sidebar-brand-text mx-3">Dashboard</div>
+			<div class="sidebar-brand-text mx-3">Company Directory</div>
 		</a>
 
 		<!-- Divider -->
@@ -15,7 +15,7 @@
 		<li class="nav-item active">
 			<a class="nav-link" href="<?=$baseurl ?>">
 				<i class="fas fa-fw fa-tachometer-alt"></i>
-				<span>Dashboard</span></a>
+				<span>Directory</span></a>
 		</li>
 
 		<!-- Divider -->
