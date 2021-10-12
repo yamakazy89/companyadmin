@@ -13,8 +13,8 @@
                             <button class="d-none d-sm-inline-block btn btn-success" type="button" data-toggle="modal" data-target="#modalCreateDepartment"> Create New</button>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <div class="table-responsive" >
+                                <table class="table table-bordered" id="table_data" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>Name</th>

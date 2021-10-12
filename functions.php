@@ -24,7 +24,7 @@
 		
 	}
 	//print_r($requesturi[$pageindex]);
-	$title = $_page  = $requesturi[$pageindex] ?? "dashboard";
+	$title = $_page  = $requesturi[$pageindex] ?? "employeelist";
 	ob_start();
 	include ("pages/".$_page.".php");
 	$content = ob_get_clean();

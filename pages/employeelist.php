@@ -15,7 +15,7 @@
 			</h6>
 		</div>
 		<div class="card-body">
-			<div class="table-responsive">
+			<div class="table-responsive" >
 				<table class="table table-bordered" id="table_data" width="100%" cellspacing="0">
 					<thead>
 						<tr>
@@ -25,7 +25,10 @@
 							<th>Email</th>
 							<th>Department</th>
 							<th>Location</th>
-							<th>Actions</th>
+							<th >Edit</th>
+							<th >Delete</th>
+							<th >Details</th>
+							
 						</tr>
 					</thead>
 					<tfoot>
@@ -36,7 +39,10 @@
 							<th>Email</th>
 							<th>Department</th>
 							<th>Location</th>
-							<th>Actions</th>
+							<th >Edit</th>
+							<th >Delete</th>
+							<th >Details</th>
+							
 						</tr>
 					</tfoot>
 					<tbody id="employeecontent">
@@ -142,15 +148,7 @@
 			<input type="hidden" value="" id="editemployeeid" name="id" />
 		  <div class="modal-body">
 			<table class="table table-striped">
-				<thead >
-					<tr>
-						<th>First Name</th>
-						<th>Last Name</th>
-						<th>Job Title</th>
-						<th>Email</th>
-						<th>Department Name</th>
-					</tr>
-				</thead>
+				
 				<tbody id="employeeEditingData">
 				
 				</tbody>
@@ -179,15 +177,7 @@
 			
 		  <div class="modal-body">
 			<table class="table table-striped">
-				<thead >
-					<tr>
-						<th>First Name</th>
-						<th>Last Name</th>
-						<th>Job Title</th>
-						<th>Email</th>
-						<th>Department Name</th>
-					</tr>
-				</thead>
+				
 				<tbody id="employeeCreateData">
 				
 				</tbody>

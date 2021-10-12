@@ -38,7 +38,7 @@ $(document).ready(function(){
 					<button class='btn btn-warning edit' attr-id='`+data[i].id+`'><i class='fa fa-pencil-alt'></i></button>
 					<button class='btn btn-danger delete'  attr-id='`+data[i].id+`'><i class='fa fa-trash-alt'></i></button>
 					<button class='btn btn-primary view' attr-id='`+data[i].id+`'><i class='fa fa-info'></i></button>`;
-					
+					actions.style.width = "200px";
 				//	tr.append(id);
 					tr.append(name);
 					tr.append(locationname);
@@ -85,33 +85,58 @@ $(document).ready(function(){
 					
 					var id = $(this).attr('attr-id');
 					$("#deptid").val(id);
-					$("#deletemodal").modal("show");
+
 					
-					$("#deptdeleteform").submit(function(evt){
-						$("#deletemodal").modal("hide");	
-						evt.preventDefault();
-						
-						$.ajax({
-						
-							url:"libs/deleteDepartmentByID.php",
-							type:"get",
-							dataType:"json",
-							data:{id:id},
-							success:function(res){
-								
-									if(res.status.code == "200"){
-										$("#messagemodal").modal("show");
-										var inter = setInterval(function(){
+					$.ajax({
+					
+						url:"libs/getDepartmentByUsage.php",
+						type:"get",
+						dataType:"json",
+						data:{id:id},
+						success:function(res){
+							
+							if(res.status.code == "200"){
+								$("#deletemodal").modal("show");
+								$("#deptdeleteform").submit(function(evt){
+									evt.preventDefault();
+									
+									$.ajax({
+									
+										url:"libs/deleteDepartmentByID.php",
+										type:"get",
+										dataType:"json",
+										data:{id:id},
+										success:function(res){
 											
-											location.reload();
-											clearInterval(inter);
-										},700);
+											if(res.status.code == "200"){
+												$("#messagemodal").modal("show");
+												var inter = setInterval(function(){
+													
+													location.reload();
+													clearInterval(inter);
+												},700);
+												
+											}
+											$("#deletemodal").modal("hide");	
+
+											
+										}
 										
-									}
+									});
+									
+								});
+						
+							}else{
 								
+								$("#messagebox").html(res.data.message);
+								$("#messagemodal").modal("show");
+								$("#messageboxform").submit(function(evt){
+									evt.preventDefault();
+									$("#messagemodal").modal("hide");
+								});
 							}
 							
-						});
+						}
 						
 					});
 					
@@ -119,13 +144,15 @@ $(document).ready(function(){
 				});
 				
 				
-				 $("#table_data").DataTable({
-					  "paging": false,
-					  "searching": true,
-					  "ordering": true,
-					  "info": true,
-					  "autoWidth": false,
-					  "responsive": true,
+				$("#table_data").DataTable({
+					"scrollY":        "400px",
+					"scrollCollapse": true,
+					"paging":         false,
+					"searching": true,
+					"ordering": true,
+					"info": true,
+					"autoWidth": false,
+					"responsive": true,
 					}); 
 				
 				

@@ -23,7 +23,9 @@ $(document).ready(function(){
 					var email = document.createElement("td");
 					var department = document.createElement("td");
 					var location = document.createElement("td");
-					var actions = document.createElement("td");
+					var actions1 = document.createElement("td");
+					var actions2 = document.createElement("td");
+					var actions3 = document.createElement("td");
 					
 					firstname.innerHTML = data[i].firstName;
 					lastname.innerHTML = data[i].lastName;
@@ -31,10 +33,9 @@ $(document).ready(function(){
 					email.innerHTML = data[i].email;
 					department.innerHTML = data[i].department;
 					location.innerHTML = data[i].location;
-					actions.innerHTML = `
-					<button class='btn btn-warning edit' attr-id='`+data[i].id+`'><i class='fa fa-pencil-alt'></i></button>
-					<button class='btn btn-danger delete'  attr-id='`+data[i].id+`'><i class='fa fa-trash-alt'></i></button>
-					<button class='btn btn-primary view' attr-id='`+data[i].id+`'><i class='fa fa-info'></i></button>`;
+					actions1.innerHTML = `<button class='btn btn-warning edit' attr-id='`+data[i].id+`'><i class='fa fa-pencil-alt'></i></button>`;
+					actions2.innerHTML = `<button class='btn btn-danger delete'  attr-id='`+data[i].id+`'><i class='fa fa-trash-alt'></i></button>`;
+					actions3.innerHTML = `<button class='btn btn-primary view' attr-id='`+data[i].id+`'><i class='fa fa-info'></i></button>`;
 		
 					
 					tr.append(firstname);
@@ -43,7 +44,9 @@ $(document).ready(function(){
 					tr.append(email);
 					tr.append(department);
 					tr.append(location);
-					tr.append(actions);
+					tr.append(actions1);
+					tr.append(actions2);
+					tr.append(actions3);
 					
 					$("#employeecontent").append(tr);
 					//break;
@@ -66,32 +69,33 @@ $(document).ready(function(){
 							
 								var tr = document.createElement("tr");
 					
-								var firstname = document.createElement("td");
-								var lastname = document.createElement("td");
-								var jobtitle = document.createElement("td");
-								var email = document.createElement("td");
-								var department = document.createElement("td");
-								var actions = document.createElement("td");
+								var firstname = document.createElement("tr");
+								var lastname = document.createElement("tr");
+								var jobtitle = document.createElement("tr");
+								var email = document.createElement("tr");
+								var department = document.createElement("tr");
+								var actions = document.createElement("tr");
 								
-								firstname.innerHTML = "<input type='text' class='form-control' name='firstname' placeholder='Enter First Name' />";
-								lastname.innerHTML = "<input type='text' class='form-control' name='lastname'  placeholder='Enter Last Name' />";
-								jobtitle.innerHTML = "<input type='text' class='form-control' name='jobtitle' placeholder='Enter Job Title' />";
-								email.innerHTML = "<input type='text' class='form-control' name='email' placeholder='Enter Email' />";
+								firstname.innerHTML = "<th>First Name</th><td><input type='text' class='form-control' name='firstname' placeholder='Enter First Name' /></td>";
+								lastname.innerHTML = "<th>Last Name</th><td><input type='text' class='form-control' name='lastname'  placeholder='Enter Last Name' /></td>";
+								jobtitle.innerHTML = "<th>Job Title</th><td><input type='text' class='form-control' name='jobtitle' placeholder='Enter Job Title' /></td>";
+								email.innerHTML = "<th>Email</th><td><input type='text' class='form-control' name='email' placeholder='Enter Email' /></td>";
 								
 								var str = "";
 								var departments = data;
 								for(var i=0;i<departments.length;i++){
 									str += `<option value='${departments[i].id}'>${departments[i].name}</option>`
 								}
-								department.innerHTML = "<select name='departmentID' class='form-control'>"+str+"</select>";
+								department.innerHTML = "<th>Select Department</th><td><select name='departmentID' class='form-control'>"+str+"</select></td>";
 								
-								tr.append(firstname);
-								tr.append(lastname);
-								tr.append(jobtitle);
-								tr.append(email);
-								tr.append(department);
+								$("#employeeCreateData").html("");
+								$("#employeeCreateData").append(firstname);
+								$("#employeeCreateData").append(lastname);
+								$("#employeeCreateData").append(jobtitle);
+								$("#employeeCreateData").append(email);
+								$("#employeeCreateData").append(department);
 								
-								$("#employeeCreateData").html(tr);
+								
 								
 								
 								$("#createmodal").modal("show");
@@ -142,20 +146,18 @@ $(document).ready(function(){
 						success:function(res){
 							console.log(res);
 							$("#department").html("");
-							var tr = document.createElement("tr");
-					
-							var firstname = document.createElement("td");
-							var lastname = document.createElement("td");
-							var jobtitle = document.createElement("td");
-							var email = document.createElement("td");
-							var department = document.createElement("td");
-							var location = document.createElement("td");
-							var actions = document.createElement("td");
 							
-							firstname.innerHTML = "<input type='text' class='form-control' name='firstname' value='"+res.data.personnel.firstName+"' />";
-							lastname.innerHTML = "<input type='text' class='form-control' name='lastname' value='"+res.data.personnel.lastname+"' />";
-							jobtitle.innerHTML = "<input type='text' class='form-control' name='jobtitle' value='"+res.data.personnel.jobtitle+"' />";
-							email.innerHTML = "<input type='text' class='form-control' name='email' value='"+res.data.personnel.email+"' />";
+							var firstname = document.createElement("tr");
+							var lastname = document.createElement("tr");
+							var jobtitle = document.createElement("tr");
+							var email = document.createElement("tr");
+							var department = document.createElement("tr");
+							var actions = document.createElement("tr");
+								
+							firstname.innerHTML = "<th>First Name</th><td><input type='text' class='form-control' name='firstname' value='"+res.data.personnel.firstName+"' /></td>";
+							lastname.innerHTML = "<th>Last Name</th><td><input type='text' class='form-control' name='lastname' value='"+res.data.personnel.lastName+"' /></td>";
+							jobtitle.innerHTML = "<th>Job Title</th><td><input type='text' class='form-control' name='jobtitle' value='"+res.data.personnel.jobTitle+"' /></td>";
+							email.innerHTML = "<th>Email</th><td><input type='text' class='form-control' name='email' value='"+res.data.personnel.email+"' /></td>";
 							
 							var str = "";
 							var departments = res.data.department;
@@ -166,24 +168,18 @@ $(document).ready(function(){
 								else
 								str += `<option value='${departments[i].id}'>${departments[i].name}</option>`
 							}
-							department.innerHTML = "<select name='departmentID' class='form-control'>"+str+"</select>";
-							/* 
-							firstname.innerHTML = "<input type='text' class='form-control' name='firstname' value='"res.data.personnel.firstName+"' />";
-							lastname.innerHTML = res.data.personnel.lastName;
-							jobtitle.innerHTML = res.data.personnel.jobTitle;
-							email.innerHTML = res.data.personnel.email;
-							//department.innerHTML = res.data.department;
-							department.innerHTML = res.data.personnel.departmentname;
-							location.innerHTML = res.data.personnel.locationname; */
-						
-							tr.append(firstname);
-							tr.append(lastname);
-							tr.append(jobtitle);
-							tr.append(email);
-							tr.append(department);
+							department.innerHTML = "<th>Select Department</th><td><select name='departmentID' class='form-control'>"+str+"</select></td>";
 							
-							$("#employeeEditingData").html(tr);
-							//$("#employeeData").append(tr);
+							
+							//$("#employeeEditingData").html(tr);
+							
+							$("#employeeEditingData").html("");
+							$("#employeeEditingData").append(firstname);
+							$("#employeeEditingData").append(lastname);
+							$("#employeeEditingData").append(jobtitle);
+							$("#employeeEditingData").append(email);
+							$("#employeeEditingData").append(department);
+							
 							
 							$("#editmodal").modal("show");
 						}
@@ -198,7 +194,7 @@ $(document).ready(function(){
 					$.ajax({
 						
 						url:"libs/editPersonnelByID.php",
-						type:"get",
+						type:"post",
 						dataType:"json",
 						data:$(this).serialize(),
 						success:function(res){
@@ -298,7 +294,9 @@ $(document).ready(function(){
 				
 				
 				$("#table_data").DataTable({
-					"paging": false,
+					"scrollY":        "400px",
+					"scrollCollapse": true,
+					"paging":         false,
 					"searching": true,
 					//"bPaginate": false,
 					"ordering": true,
