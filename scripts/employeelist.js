@@ -225,31 +225,28 @@ $(document).ready(function(){
 							$("#department").html("");
 							var tr = document.createElement("tr");
 					
-							var firstname = document.createElement("td");
-							var lastname = document.createElement("td");
-							var jobtitle = document.createElement("td");
-							var email = document.createElement("td");
-							var department = document.createElement("td");
-							var location = document.createElement("td");
-							var actions = document.createElement("td");
 							
-							firstname.innerHTML = res.data.personnel.firstName;
-							lastname.innerHTML = res.data.personnel.lastName;
-							jobtitle.innerHTML = res.data.personnel.jobTitle;
-							email.innerHTML = res.data.personnel.email;
-							//department.innerHTML = res.data.department;
-							department.innerHTML = res.data.personnel.departmentname;
-							location.innerHTML = res.data.personnel.locationname;
-						
-							tr.append(firstname);
-							tr.append(lastname);
-							tr.append(jobtitle);
-							tr.append(email);
-							tr.append(department);
-							tr.append(location);
+							var firstname = document.createElement("tr");
+							var lastname = document.createElement("tr");
+							var jobtitle = document.createElement("tr");
+							var email = document.createElement("tr");
+							var department = document.createElement("tr");
+							var location = document.createElement("tr");
+								
+							firstname.innerHTML = "<th>First Name</th><td>"+res.data.personnel.firstName+"</td>";
+							lastname.innerHTML = "<th>Last Name</th><td>"+res.data.personnel.lastName+"</td>";
+							jobtitle.innerHTML = "<th>Job Title</th><td>"+res.data.personnel.jobTitle+"</td>";
+							email.innerHTML = "<th>Email</th><td>"+res.data.personnel.email+"</td>";
+							department.innerHTML = "<th>Email</th><td>"+res.data.personnel.departmentname+"</td>";
+							location.innerHTML = "<th>Location</th><td>"+res.data.personnel.locationname+"</td>";
 							
-							$("#employeeData").html(tr);
-							//$("#employeeData").append(tr);
+							$("#employeeData").html("");
+							$("#employeeData").append(firstname);
+							$("#employeeData").append(lastname);
+							$("#employeeData").append(jobtitle);
+							$("#employeeData").append(email);
+							$("#employeeData").append(department);
+							$("#employeeData").append(location);
 							
 							$("#viewmodal").modal("show");
 						}

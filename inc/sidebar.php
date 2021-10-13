@@ -33,6 +33,11 @@
 				<i class="fas fa-fw fa-chart-area"></i>
 				<span>All Departments</span></a>
 		</li>
+	    <li class="nav-item">
+			<a class="nav-link" href="<?=$baseurl ?>alllocations">
+				<i class="fas fa-fw fa-chart-area"></i>
+				<span>All Locations</span></a>
+		</li>
 
 		
 		<!-- Divider -->

@@ -112,16 +112,7 @@
       </div>
       <div class="modal-body">
         <table class="table table-striped">
-			<thead >
-				<tr>
-					<th>First Name</th>
-					<th>Last Name</th>
-					<th>Job Title</th>
-					<th>Email</th>
-					<th>Department Name</th>
-					<th>Location</th>
-				</tr>
-			</thead>
+			
 			<tbody id="employeeData">
 			
 			</tbody>
